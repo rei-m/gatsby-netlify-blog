@@ -1,34 +1,60 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql, StaticQuery } from 'gatsby';
+import { SiteMetaData } from '@src/types';
 
-function SEO({ description, lang, meta, keywords, title }) {
+export interface Props {
+  description?: string;
+  lang?: string;
+  meta?: Array<{
+    name: string;
+    content: string;
+  }>;
+  keywords?: string[];
+  title: string;
+}
+
+export interface QueryData {
+  site: {
+    siteMetadata: SiteMetaData;
+  };
+  ogpImage: {
+    publicURL: string;
+  };
+}
+
+const SEO: React.FC<Props> = ({ description, lang, meta, keywords, title }) => {
+  const checkedLang: string = lang ? lang : 'ja';
+  const checkedKeywords: string[] = keywords ? keywords : [];
+  const checkedMeta: Array<{
+    name: string;
+    content: string;
+  }> = meta ? meta : [];
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
+      render={(data: QueryData) => {
+        const checkedTitle = title || data.site.siteMetadata.title;
+        const checkedDescription = description || data.site.siteMetadata.description;
         return (
           <Helmet
             htmlAttributes={{
-              lang,
+              lang: checkedLang,
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
             meta={[
               {
                 name: `description`,
-                content: metaDescription,
+                content: checkedDescription,
               },
               {
                 property: `og:title`,
-                content: title,
+                content: checkedTitle,
               },
               {
                 property: `og:description`,
-                content: metaDescription,
+                content: checkedDescription,
               },
               {
                 property: `og:type`,
@@ -48,40 +74,26 @@ function SEO({ description, lang, meta, keywords, title }) {
               },
               {
                 name: `twitter:description`,
-                content: metaDescription,
+                content: checkedDescription,
               },
             ]
               .concat(
-                keywords.length > 0
+                checkedKeywords.length > 0
                   ? {
                       name: `keywords`,
-                      content: keywords.join(`, `),
+                      content: checkedKeywords.join(`, `),
                     }
                   : []
               )
-              .concat(meta)}
+              .concat(checkedMeta)}
           />
-        )
+        );
       }}
     />
-  )
-}
+  );
+};
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  keywords: [],
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-}
-
-export default SEO
+export default SEO;
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
@@ -93,4 +105,4 @@ const detailsQuery = graphql`
       }
     }
   }
-`
+`;
