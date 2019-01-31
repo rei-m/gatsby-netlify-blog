@@ -3,20 +3,31 @@
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "rei-m",
   "dependencies": {
+    "@material-ui/core": "^3.9.1",
+    "@material-ui/icons": "^3.0.2",
+    "@wapps/gatsby-plugin-material-ui": "^1.2.0",
     "gatsby": "^2.0.105",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.15",
+    "gatsby-plugin-no-sourcemaps": "^2.0.1",
     "gatsby-plugin-offline": "^2.0.22",
     "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-remove-trailing-slashes": "^2.0.6",
     "gatsby-plugin-sharp": "^2.0.19",
+    "gatsby-plugin-styled-components": "^3.0.4",
+    "gatsby-plugin-typescript": "^2.0.4",
+    "gatsby-plugin-typography": "^2.2.6",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.13",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-typography": "^0.16.18",
+    "styled-components": "^4.1.3",
+    "typography": "^0.16.18"
   },
   "keywords": [
     "gatsby"
@@ -31,9 +42,29 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/rei-m/gatsby-netlify-blog"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/rei-m/gatsby-netlify-blog/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-helmet": "^5.0.8",
+    "@types/styled-components": "^4.1.7",
+    "@types/typography": "^0.16.2",
+    "babel-core": "^6.26.3",
+    "babel-plugin-styled-components": "^1.10.0",
+    "babel-preset-gatsby": "^0.1.6",
+    "identity-obj-proxy": "^3.0.0",
+    "prettier": "^1.16.3",
+    "source-map-support": "^0.5.10",
+    "ts-node": "^8.0.2",
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.4"
   }
 }
